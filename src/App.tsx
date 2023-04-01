@@ -4,7 +4,8 @@ import Filter from './components/filter/filter';
 import axios from "axios";
 import User from './components/user/user';
 function App() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<any>([]);
+  console.log('users :', users);
   const [quantity, setQuantity] = useState<number>(3);
   const [selectedGender, setSelectedGender] = useState<string>('both');
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -13,7 +14,11 @@ function App() {
   const getData = () => {
     const gender = selectedGender === "both" ? "" : selectedGender;
     axios.get(`https://fakerapi.it/api/v1/persons?_quantity=${quantity}&_gender=${gender}`).then((res) => {
-      setUsers(res.data.data);
+      if (quantity === 3) {
+        setUsers(res.data.data);
+      } else {
+        setUsers([...users, ...res.data.data.slice(quantity - 3, quantity)]);
+      }
       setIsLoading(false);
     }).catch((err) => {
       console.log("err", err);
