@@ -1,0 +1,19 @@
+@use '../../styles/mixin.scss' as mixin;
+.userCard {
+  width: 100%;
+  img {
+    max-width: 25%;
+    border-radius: 9px;
+    @include mixin.for-phone-only {
+      max-width: 100%;
+    }
+  }
+  ul {
+    li {
+      margin: 10px 0px;
+      span:first-child {
+        font-weight: bold;
+      }
+    }
+  }
+}

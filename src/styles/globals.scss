@@ -1,0 +1,262 @@
+@use '../styles/mixin.scss' as mixin;
+@use '../styles/Colors.scss' as Colors;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+html {
+  scroll-behavior: smooth;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+* {
+  outline: 0 !important;
+  box-sizing: border-box;
+}
+
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+  outline: 0;
+}
+
+body {
+  background-color: Colors.$white;
+  line-height: 1.5;
+  position: relative;
+  height: 100%;
+  font-weight: normal;
+  float: left;
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+section {
+  float: left;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+//
+// /* Let's get this party started */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  opacity: 0.5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(173, 173, 173, 0.9);
+}
+.flexDev {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.center {
+  text-align: center;
+}
+.flexContentCenter {
+  justify-content: center;
+  width: 100% !important;
+}
+
+.loginPage {
+  img {
+    max-height: 100vh;
+    object-fit: cover;
+    width: 50vw;
+    @include mixin.for-phone-only {
+      display: none;
+    }
+  }
+}
+.App {
+  padding-bottom: 50px;
+  @include mixin.for-phone-only {
+    padding-top: 30vw;
+  }
+}
+// loader
+.wbeLoader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  .loader {
+    animation: rotate 2s infinite;
+    height: 50px;
+    width: 50px;
+  }
+
+  .loader:before,
+  .loader:after {
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 20px;
+    width: 20px;
+  }
+  .loader:before {
+    animation: ball1 2s infinite;
+    background-color: Colors.$mainColor1;
+    box-shadow: 30px 0 0 Colors.$mainColor1;
+    margin-bottom: 10px;
+  }
+  .loader:after {
+    animation: ball2 2s infinite;
+    background-color: Colors.$mainColor1;
+    box-shadow: 30px 0 0 Colors.$mainColor1;
+  }
+
+  @keyframes rotate {
+    0% {
+      -webkit-transform: rotate(0deg) scale(0.8);
+      -moz-transform: rotate(0deg) scale(0.8);
+    }
+    50% {
+      -webkit-transform: rotate(360deg) scale(1.2);
+      -moz-transform: rotate(360deg) scale(1.2);
+    }
+    100% {
+      -webkit-transform: rotate(720deg) scale(0.8);
+      -moz-transform: rotate(720deg) scale(0.8);
+    }
+  }
+
+  @keyframes ball1 {
+    0% {
+      box-shadow: 30px 0 0 Colors.$mainColor1;
+    }
+    50% {
+      box-shadow: 0 0 0 Colors.$mainColor1;
+      margin-bottom: 0;
+      -webkit-transform: translate(15px, 15px);
+      -moz-transform: translate(15px, 15px);
+    }
+    100% {
+      box-shadow: 30px 0 0 Colors.$mainColor1;
+      margin-bottom: 10px;
+    }
+  }
+
+  @keyframes ball2 {
+    0% {
+      box-shadow: 30px 0 0 Colors.$mainColor1;
+    }
+    50% {
+      box-shadow: 0 0 0 Colors.$mainColor1;
+      margin-top: -20px;
+      -webkit-transform: translate(15px, 15px);
+      -moz-transform: translate(15px, 15px);
+    }
+    100% {
+      box-shadow: 30px 0 0 Colors.$mainColor1;
+      margin-top: 0;
+    }
+  }
+}
+
+header {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5vw;
+  border-bottom: 1px solid #ccc;
+  @include mixin.for-phone-only {
+    display: block;
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    padding: 10px 5vw;
+    top: 0;
+    > div {
+      margin: 5px 0px;
+      display: flex;
+    }
+  }
+  > div span:first-child {
+    background-color: green;
+    padding: 10px 20px;
+    color: Colors.$white;
+    margin-right: 20px;
+    font-weight: bold;
+    @include mixin.for-phone-only {
+      padding: 10px 20px;
+    }
+  }
+  > div span:last-child {
+    color: green;
+    font-size: 1.5vw;
+    font-weight: bold;
+    padding: 10px 5px;
+    @include mixin.for-phone-only {
+      font-size: 4vw;
+    }
+  }
+}
+// mainPage
+.userGrid {
+  padding: 20px 5vw;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 2vw;
+  row-gap: 50px;
+  margin-bottom: 50px;
+  @include mixin.for-phone-only {
+    grid-template-columns: auto;
+  }
+  @include mixin.for-tablet-only {
+    grid-template-columns: auto auto;
+  }
+}
+
+// load more
+.loadMore {
+  background: Colors.$loadMoreBtn;
+  border: 0px;
+  padding: 10px 20px;
+  display: table;
+  margin: 0px auto;
+  color: Colors.$white;
+  cursor: pointer;
+  transition: all 1s;
+  &:hover {
+    opacity: 0.8;
+  }
+}
