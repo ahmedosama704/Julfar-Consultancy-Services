@@ -8,6 +8,8 @@ function App() {
   const [quantity, setQuantity] = useState<number>(3);
   const [selectedGender, setSelectedGender] = useState<string>('both');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // Fetching data
   const getData = () => {
     const gender = selectedGender === "both" ? "" : selectedGender;
     axios.get(`https://fakerapi.it/api/v1/persons?_quantity=${quantity}&_gender=${gender}`).then((res) => {
@@ -18,10 +20,13 @@ function App() {
       setIsLoading(false);
     })
   }
+
+  // Get data first time and when quantity or gender change
   useEffect(() => {
     setIsLoading(true);
     getData();
   }, [quantity, selectedGender])
+
   return (
     <div className="App">
       {isLoading && <div className="wbeLoader"><div className="loader" /></div>}
